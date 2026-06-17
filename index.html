@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VINTECH SOLUTION | Enterprise IT Systems & Doorstep Delivery</title>
-    <!-- FontAwesome for Premium Corporate Tech Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -21,6 +20,7 @@
             --accent: #2ec4b6;
             --warning: #f59e0b;
             --success: #10b981;
+            --danger: #ef4444;
             --dark: #112240;
             --light: #f8fafc;
             --text-dark: #0f172a;
@@ -104,11 +104,13 @@
             padding: 130px 5% 100px;
             text-align: center;
         }
+
         .hero h1 { font-size: 3.2rem; margin-bottom: 20px; font-weight: 800; }
         .hero h1 span { color: var(--secondary); }
         .hero p { font-size: 1.3rem; margin-bottom: 35px; color: var(--text-light); max-width: 800px; margin-left: auto; margin-right: auto; }
 
         .cta-buttons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+
         .btn {
             background-color: var(--secondary);
             color: #0a192f;
@@ -148,62 +150,35 @@
         }
         .tracker-input-box { display: flex; gap: 10px; margin-bottom: 20px; }
         .tracker-input-box input {
-            flex: 1;
-            padding: 12px;
-            border-radius: 6px;
-            border: 1px solid #475569;
-            background: #0f172a;
-            color: white;
-            font-size: 1rem;
+            flex: 1; padding: 12px; border-radius: 6px; border: 1px solid #475569;
+            background: #0f172a; color: white; font-size: 1rem;
         }
         .tracker-btn {
-            background: var(--secondary);
-            color: var(--primary);
-            border: none;
-            padding: 12px 25px;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: 0.3s;
+            background: var(--secondary); color: var(--primary); border: none;
+            padding: 12px 25px; font-weight: bold; border-radius: 6px; cursor: pointer; transition: 0.3s;
         }
         .tracker-btn:hover { background: #0096b4; }
         .tracker-result {
-            display: none;
-            background: #0f172a;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: left;
-            border-left: 4px solid var(--warning);
+            display: none; background: #0f172a; padding: 20px; border-radius: 8px;
+            text-align: left; border-left: 4px solid var(--warning);
         }
         .status-timeline { margin-top: 15px; font-size: 0.95rem; }
         .status-step { margin-bottom: 12px; display: flex; align-items: center; gap: 10px; color: #475569; }
         .status-done { color: var(--success) !important; font-weight: 600; }
         .status-current { color: var(--warning) !important; font-weight: bold; }
 
-        /* ADMIN EXCLUSIVE PANEL VIEW */
-        .admin-panel-card {
-            display: none;
-            max-width: 600px;
-            margin: 30px auto;
-            background: #ffffff;
-            color: #0f172a;
-            border-radius: 12px;
-            padding: 30px;
-            text-align: left;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-            border: 2px solid var(--secondary);
-        }
-        .admin-panel-card h3 { color: var(--primary); margin-bottom: 15px; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;}
-        .admin-panel-card select, .admin-panel-card input {
-            width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 1rem;
-        }
-
-        /* Stock Showcase Layout */
+        /* Stock Showcase Grid Layout */
         .inventory-section { background-color: #f1f5f9; }
-        .stock-badge { position: absolute; top: 15px; right: 15px; background: var(--success); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; z-index: 10; }
-        .delivery-notice { background: #e0f2fe; color: #0369a1; padding: 10px; border-radius: 6px; font-size: 0.9rem; font-weight: 600; margin-top: 10px; display: flex; align-items: center; gap: 8px; }
+        .stock-badge {
+            position: absolute; top: 15px; right: 15px; background: var(--success);
+            color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; z-index: 10;
+        }
+        .delivery-notice {
+            background: #e0f2fe; color: #0369a1; padding: 10px; border-radius: 6px;
+            font-size: 0.9rem; font-weight: 600; margin-top: 10px; display: flex; align-items: center; gap: 8px;
+        }
 
-        /* Services Grid Layout */
+        /* Services Cards Grid Layout */
         .section { padding: 80px 5%; }
         .section-title { text-align: center; margin-bottom: 10px; font-size: 2.4rem; color: var(--primary); font-weight: 700; }
         .section-subtitle { text-align: center; color: #64748b; margin-bottom: 50px; font-size: 1.1rem; }
@@ -239,21 +214,45 @@
 
         #formStatus { display: none; margin-top: 15px; padding: 12px; border-radius: 6px; font-weight: 600; text-align: center; }
         .status-success { background-color: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+        .status-error { background-color: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
 
-        footer { background-color: var(--primary); color: var(--text-light); text-align: center; padding: 30px 5%; font-size: 0.95rem; border-top: 4px solid var(--secondary); }
+        /* ====================================================================
+           🔒 EXCLUSIVE OWN ADMIN PANEL STYLING SECTION
+           ==================================================================== */
+        .admin-section { display: none; background: #0f172a; color: white; padding: 60px 5%; border-top: 5px solid var(--accent); }
+        .admin-card { max-width: 850px; margin: 0 auto; background: #1e293b; padding: 35px; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.4); border: 1px solid #334155; }
+        .admin-form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px; }
+        .admin-input { padding: 12px; background: #0f172a; border: 1px solid #475569; border-radius: 6px; color: white; font-size: 1rem; width: 100%; }
+        .admin-select { padding: 12px; background: #0f172a; border: 1px solid #475569; border-radius: 6px; color: var(--accent); font-size: 1rem; font-weight: 600; width: 100%; }
+        
+        .admin-table-container { margin-top: 30px; overflow-x: auto; }
+        .admin-table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.95rem; }
+        .admin-table th, .admin-table td { padding: 12px; text-align: left; border-bottom: 1px solid #334155; }
+        .admin-table th { background: #0f172a; color: var(--secondary); font-weight: 600; }
+        .admin-table tr:hover { background: #24334d; }
+        
+        .action-btn { padding: 6px 12px; border-radius: 4px; border: none; cursor: pointer; font-weight: bold; font-size: 0.85rem; transition: 0.2s; }
+        .btn-update { background: var(--warning); color: #0a192f; margin-right: 5px; }
+        .btn-delete { background: var(--danger); color: white; }
+        .action-btn:hover { opacity: 0.9; transform: scale(1.05); }
+
+        .admin-link { color: var(--text-light); text-decoration: none; font-size: 0.85rem; display: inline-block; margin-top: 15px; transition: 0.3s; }
+        .admin-link:hover { color: var(--accent); text-shadow: 0 0 5px rgba(46, 196, 182, 0.4); }
+
+        footer { background-color: var(--primary); color: var(--text-light); text-align: center; padding: 40px 5% 30px; font-size: 0.95rem; border-top: 4px solid var(--secondary); }
         @media (max-width: 768px) { .hero h1 { font-size: 2.4rem; } nav { flex-direction: column; gap: 15px; } }
     </style>
 </head>
 <body>
 
-    <!-- Top Contact Bar -->
     <div class="top-bar">
-        <i class="fa-solid fa-bolt"></i> Fast Tech Desk Call: <strong>+91 6383635311</strong> | <a href="#admin" onclick="checkAdminKey()"><strong>🔑 Admin Portal Access</strong></a>
+        <i class="fa-solid fa-bolt"></i> Fast Tech Desk Call: <strong>+91 6383635311</strong> | Direct Mail: <a href="mailto:vintech.vin.1@gmail.com"><strong>vintech.vin.1@gmail.com</strong></a>
     </div>
 
-    <!-- Navigation -->
     <nav>
-        <div class="logo"><i class="fa-solid fa-microchip"></i> VINTECH <span>SOLUTION</span></div>
+        <div class="logo">
+            <i class="fa-solid fa-microchip"></i> VINTECH <span>SOLUTION</span>
+        </div>
         <div class="nav-links">
             <a href="#tracker">Track Status</a>
             <a href="#inventory">Store Inventory</a>
@@ -263,7 +262,6 @@
         </div>
     </nav>
 
-    <!-- Hero -->
     <header class="hero">
         <h1>Your Ultimate <span>IT Systems & Component Sourcing</span> Hub</h1>
         <p>Premium Web/APK Engineering, Chip-level System Diagnostics, and On-Demand Component Sourcing delivered straight to your doorstep.</p>
@@ -273,11 +271,9 @@
         </div>
     </header>
 
-    <!-- Live Tracker Section -->
     <section id="tracker" class="tracker-section">
         <h2>Live System Service & Sourcing Tracker</h2>
         <p style="color: var(--text-light);">Enter your Tracking ID or registered Mobile Number to see current phase diagnostics updates.</p>
-        
         <div class="tracker-container">
             <div class="tracker-input-box">
                 <input type="text" id="trackId" placeholder="Enter Tracking ID or Mobile Number">
@@ -294,34 +290,11 @@
                 </div>
             </div>
         </div>
-
-        <!-- HIDDEN SECURE ADMIN LOGIC MODULE PANEL -->
-        <div id="adminPanel" class="admin-panel-card">
-            <h3><i class="fa-solid fa-user-gear"></i> Secure Vintech Admin Desk</h3>
-            <label><b>Customer Tracking Link ID (Mobile No)</b></label>
-            <input type="text" id="admId" placeholder="e.g. 9876543210">
-            
-            <label><b>Customer Full Name</b></label>
-            <input type="text" id="admName" placeholder="Enter Client Name">
-            
-            <label><b>Work Logs / Device Sourcing Note</b></label>
-            <input type="text" id="admDetails" placeholder="e.g. HP Laptop Core-IC Replacement under sourcing">
-            
-            <label><b>Current Deployment Phase (Stage)</b></label>
-            <select id="admStage">
-                <option value="1">Phase 1: Asset Device Approved</option>
-                <option value="2">Phase 2: Technical Diagnosis Active</option>
-                <option value="3">Phase 3: Completed & Delivered</option>
-            </select>
-            
-            <button class="tracker-btn" style="width:100%;" onclick="saveAdminData()">Push Diagnostics Update Live</button>
-            <p style="text-align:center; margin-top:10px; font-size:0.85rem; color:#64748b;">Secured Local Database Protocol Integration active</p>
-        </div>
     </section>
 
-    <!-- Store Inventory -->
     <section id="inventory" class="section inventory-section">
         <h2 class="section-title">Namma Ready-Stock Inventory Matrix</h2>
+        <p class="section-subtitle">Select any upgrade parameter you need. We source and complete <strong>Doorstep Delivery within 24 Hours guaranteed!</strong></p>
         <div class="grid">
             <div class="card">
                 <span class="stock-badge">Ready Stock</span>
@@ -343,12 +316,32 @@
                     <div class="delivery-notice"><i class="fa-solid fa-truck-ramp-box"></i> Doorstep Fitting within 24 Hours</div>
                 </div>
             </div>
+            <div class="card">
+                <span class="stock-badge">Ready Stock</span>
+                <img class="card-img" src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=400&q=80">
+                <div class="card-content">
+                    <i class="fa-solid fa-keyboard"></i>
+                    <h3>OEM Keyboards & Spares</h3>
+                    <p>Premium replacement laptop key arrays, mechanical input mice panels, and original brand power supplies.</p>
+                    <div class="delivery-notice"><i class="fa-solid fa-truck-ramp-box"></i> Doorstep Fitting within 24 Hours</div>
+                </div>
+            </div>
+            <div class="card">
+                <span class="stock-badge" style="background:#0284c7;">Sourced in 1 Day</span>
+                <img class="card-img" src="https://images.unsplash.com/photo-1588508065123-287b28e013da?auto=format&fit=crop&w=400&q=80">
+                <div class="card-content">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <h3>IC Logic & Motherboard Units</h3>
+                    <p>Original circuit fabrics and components sourced dynamically on-demand from our central hub units.</p>
+                    <div class="delivery-notice"><i class="fa-solid fa-truck-ramp-box"></i> Sourced & Delivered within 24 Hrs</div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Services Section -->
     <section id="services" class="section">
         <h2 class="section-title">Core Engineering Capabilities</h2>
+        <p class="section-subtitle">High-fidelity corporate IT configurations handled directly by tech engineers.</p>
         <div class="grid">
             <div class="card">
                 <img class="card-img" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=400&q=80">
@@ -366,26 +359,58 @@
                     <p>Custom standalone Android and iOS applications structured on clean architecture and high speed.</p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Buy & Sell -->
-    <section id="trade" class="section trade-section">
-        <h2 class="section-title">Hardware Liquidation & Trade Network</h2>
-        <div class="trade-container">
-            <div class="trade-box">
-                <h3><i class="fa-solid fa-cart-flatbed-suitcases" style="color: var(--secondary);"></i> Procurement Desk</h3>
-                <ul>
-                    <li>High-Speed Solid State Drives (NVMe / SATA M.2)</li>
-                    <li>System Upgrades Memory Arrays (DDR4 / DDR5 RAM)</li>
-                </ul>
+            <div class="card">
+                <img class="card-img" src="https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&w=400&q=80">
+                <div class="card-content">
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                    <h3>Hardware Diagnostics Desk</h3>
+                    <p>Chip-level industrial laptop troubleshooting, system upgrades, tuning configurations and clean setups.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=400&q=80">
+                <div class="card-content">
+                    <i class="fa-solid fa-headset"></i>
+                    <h3>Managed IT Logistics</h3>
+                    <p>On-demand remote operational logic debugging and custom deployment frameworks for business models.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Form Section -->
+    <section id="trade" class="section trade-section">
+        <h2 class="section-title">Hardware Liquidation & Trade Network</h2>
+        <p class="section-subtitle">Acquire genuine enterprise hardware spares or liquidate dead electronics stock instantly.</p>
+        <div class="trade-container">
+            <div class="trade-box">
+                <h3><i class="fa-solid fa-cart-flatbed-suitcases" style="color: var(--secondary);"></i> Procurement Desk</h3>
+                <p>We inventory original, factory-grade computer components at trade values:</p>
+                <ul>
+                    <li>High-Speed Solid State Drives (NVMe / SATA M.2)</li>
+                    <li>System Upgrades Memory Arrays (DDR4 / DDR5 RAM)</li>
+                    <li>Premium Keyboards, Desktop Mouse Devices & Dynamic Displays</li>
+                    <li>OEM Voltage Laptop Batteries & Power Blocks</li>
+                </ul>
+                <a href="#contact" class="btn" style="padding: 8px 20px; font-size: 0.9rem;">Order Parts</a>
+            </div>
+            <div class="trade-box accent-box">
+                <h3><i class="fa-solid fa-recycle" style="color: var(--accent);"></i> Electronics Salvage / Scrap</h3>
+                <p>Convert absolute tech junk, non-functional gear, and office liquidations into value:</p>
+                <ul>
+                    <li>Non-Booting, Smashed, or Broken Laptops & PC Frameworks</li>
+                    <li>Burnt Silicon Boards & Inoperable Processors</li>
+                    <li>Dead Component Modules & Structural Battery Chassis</li>
+                    <li>Bulk Corporate Infrastructure Clearances</li>
+                </ul>
+                <a href="#contact" class="btn" style="background-color: var(--accent); border-color: var(--accent); padding: 8px 20px; font-size: 0.9rem; color: #0a192f;">Get Scrap Evaluation</a>
+            </div>
+        </div>
+    </section>
+
     <section id="contact" class="section">
         <h2 class="section-title">Direct Connection Portal</h2>
+        <p class="section-subtitle">No artificial loops. File an official entry directly to our desk manager's device inbox.</p>
+        
         <div class="contact-container">
             <div class="info-side">
                 <h3>Vintech Support Matrix</h3>
@@ -393,7 +418,16 @@
                     <i class="fa-solid fa-phone-volume"></i>
                     <p><strong>Voice Support Desk:</strong><br><a href="tel:6383635311">+91 6383635311</a></p>
                 </div>
+                <div class="info-card">
+                    <i class="fa-solid fa-envelope-open-text"></i>
+                    <p><strong>Corporate Mailbox:</strong><br><a href="mailto:vintech.vin.1@gmail.com">vintech.vin.1@gmail.com</a></p>
+                </div>
+                <div class="info-card">
+                    <i class="fa-solid fa-truck-fast"></i>
+                    <p><strong>Logistics SLA Windows:</strong><br>24 Hours Express Components Procurement & Doorstep Fulfillment.</p>
+                </div>
             </div>
+
             <div class="contact-form">
                 <form id="vintechContactForm">
                     <input type="hidden" name="access_key" value="51f3cc87-524b-4e91-83d7-34e7b5900a5a">
@@ -401,73 +435,87 @@
                         <label>Customer Full Name</label>
                         <input type="text" name="Client Name" required placeholder="Enter client name">
                     </div>
-                    <button type="submit" id="submitBtn" class="btn" style="width: 100%; border: none;">Initialize Booking</button>
+                    <div class="form-group">
+                        <label>Active Mobile Link Number</label>
+                        <input type="tel" name="Client Mobile" required placeholder="Enter mobile number">
+                    </div>
+                    <div class="form-group">
+                        <label>Target Operational Matrix</label>
+                        <select name="Selected Service Pillar">
+                            <option>Custom Web Architecture & APK Systems</option>
+                            <option>24HR Express Parts Sourcing & Doorstep Fitting</option>
+                            <option>Hardware Diagnostics / OS Logic Deployment</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Logistics / Request Description</label>
+                        <textarea name="Project Description Logs" rows="4" placeholder="Mention item names or issues..."></textarea>
+                    </div>
+                    <button type="submit" id="submitBtn" class="btn" style="width: 100%; border: none; cursor: pointer;">Initialize High Priority Booking</button>
                     <div id="formStatus"></div>
                 </form>
             </div>
         </div>
     </section>
 
+    <section id="adminPanel" class="admin-section">
+        <div class="admin-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 2px solid #334155; padding-bottom: 10px;">
+                <h2 style="color: var(--accent);"><i class="fa-solid fa-user-shield"></i> VINTECH Own Admin Control Desk</h2>
+                <button class="action-btn" style="background:#475569; color:white;" onclick="logoutAdmin()">Secure Logout</button>
+            </div>
+            
+            <h3 style="margin-bottom: 15px; font-size: 1.1rem; color: #cbd5e1;">➕ Add / Update Customer Tracking Status:</h3>
+            <div class="admin-form-row">
+                <input type="text" id="admPhone" class="admin-input" placeholder="Customer Mobile or ID (e.g. 9876543210)">
+                <input type="text" id="admName" class="admin-input" placeholder="Customer Full Name">
+                <input type="text" id="admDetails" class="admin-input" placeholder="Device Name & Issue Details">
+                <select id="admStage" class="admin-select">
+                    <option value="1">Stage 1: Asset Received</option>
+                    <option value="2">Stage 2: Diagnosis/Service Active</option>
+                    <option value="3">Stage 3: Completed & Returned</option>
+                </select>
+            </div>
+            <button class="btn" style="width: 100%; background: var(--accent); color:#0a192f; border:none; padding:12px;" onclick="saveCustomer()">Save & Deploy Live Status</button>
+
+            <div class="admin-table-container">
+                <h3 style="color: white; margin-top: 10px;">📋 Currently Active Live Logs Matrix:</h3>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Mobile / ID</th>
+                            <th>Customer Name</th>
+                            <th>Device Diagnostic Logs</th>
+                            <th>Current Phase</th>
+                            <th>Actions Desk</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminTableBody">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <p>&copy; 2026 VINTECH SOLUTION. All Rights Reserved. | Premium Corporate IT Engineering Portals</p>
+        <a href="#adminPanel" class="admin-link" onclick="openAdminPortal(event)"><i class="fa-solid fa-lock"></i> 🔒 Secure Engine Admin Desk Portal</a>
     </footer>
 
-    <!-- LOGIC MANAGEMENT ENGINE SCRIPT SKELETON -->
     <script>
-        // Default Mock Data for Testing
-        if(!localStorage.getItem("6383635311")) {
-            localStorage.setItem("6383635311", JSON.stringify({
-                name: "Kumar (Demo Client)",
-                details: "Dell Inspiron Chip diagnostics active",
-                stage: 2
-            }));
+        // Default Sample Core Data if Database is completely clear
+        const defaultDatabase = {
+            "8942": { name: "Suresh", details: "Dell Inspiron Keyboard Replacement Mastered", stage: 3 },
+            "6383635311": { name: "Vintech Admin Tester", details: "Crucial NVMe 500GB SSD Express Sourcing", stage: 2 }
+        };
+
+        // Initialize Internal Local Storage Engine DB 
+        if (!localStorage.getItem("vintech_db")) {
+            localStorage.setItem("vintech_db", JSON.stringify(defaultDatabase));
         }
 
         // ==========================================
-        // 🛠️ ADMIN CONTROL PANEL LOGIC ENGINE
-        // ==========================================
-        function checkAdminKey() {
-            var accessKey = prompt("Enter Vintech Master Password to Access Admin Console:");
-            if (accessKey === "VINTECH2026") {
-                alert("Master Identity Verified! Control Block Enabled.");
-                document.getElementById("adminPanel").style.display = "block";
-                window.location.hash = "adminPanel";
-            } else {
-                alert("Access Denied! Intruder Flag Handled.");
-                document.getElementById("adminPanel").style.display = "none";
-            }
-        }
-
-        function saveAdminData() {
-            var id = document.getElementById("admId").value.trim();
-            var name = document.getElementById("admName").value.trim();
-            var details = document.getElementById("admDetails").value.trim();
-            var stage = document.getElementById("admStage").value;
-
-            if(id === "" || name === "" || details === "") {
-                alert("All setup parameters are mandatory!");
-                return;
-            }
-
-            // Client Data Payload Model mapping
-            var clientPayload = {
-                name: name,
-                details: details,
-                stage: parseInt(stage)
-            };
-
-            // Save inside native sandboxed structural local storage
-            localStorage.setItem(id, JSON.stringify(clientPayload));
-            alert("✓ Database Synced Live! Client tracking matrix active for ID: " + id);
-            
-            // Clear fields
-            document.getElementById("admId").value = "";
-            document.getElementById("admName").value = "";
-            document.getElementById("admDetails").value = "";
-        }
-
-        // ==========================================
-        // 🔍 CUSTOMER LIVE TRACKING ENGINE
+        // 🔍 CUSTOMER LIVE TRACKING FUNCTION
         // ==========================================
         function checkTracking() {
             var id = document.getElementById("trackId").value.trim();
@@ -480,47 +528,191 @@
             var st3 = document.getElementById("step3");
 
             if(id === "") {
-                alert("Enter tracking code or phone index.");
+                alert("Please input your Tracking ID or Mobile Number!");
                 return;
             }
 
-            // Extract from integrated localized dataset
-            var dbData = localStorage.getItem(id);
+            // Extract live structural array data from web database
+            var localDB = JSON.parse(localStorage.getItem("vintech_db"));
 
-            resBox.style.display = "block";
+            if (localDB && localDB[id]) {
+                var order = localDB[id];
+                resBox.style.display = "block";
+                title.innerHTML = "📦 Order Logged for: " + order.name;
+                desc.innerHTML = "<strong>Asset Item Log:</strong> " + order.details;
 
-            if (dbData) {
-                var data = JSON.parse(dbData);
-                title.innerHTML = "📦 Order Profile: " + data.name;
-                desc.innerHTML = "<strong>Diagnostics Log:</strong> " + data.details;
-                var currentStage = data.stage;
-
-                // Reset standard tracking maps
+                // Reset Timeline Classes
                 st1.className = "status-step"; st1.innerHTML = '<i class="fa-solid fa-circle-check"></i> 1. Asset Device Received & Approved';
                 st2.className = "status-step"; st2.innerHTML = '<i class="fa-solid fa-circle-notch"></i> 2. Core Sourcing / Chip Diagnosis Ongoing';
                 st3.className = "status-step"; st3.innerHTML = '<i class="fa-solid fa-truck"></i> 3. Service Completed & Returned to Doorstep';
 
-                if (currentStage === 1) {
+                var phase = parseInt(order.stage);
+                if (phase === 1) {
                     st1.className = "status-step status-current";
-                    st1.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> 1. Asset Device Received Successfully & Logged';
-                } 
-                else if (currentStage === 2) {
+                    st1.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> 1. Asset Device Received & Logged';
+                } else if (phase === 2) {
                     st1.className = "status-step status-done";
                     st2.className = "status-step status-current";
-                    st2.innerHTML = '<i class="fa-solid fa-gears fa-spin"></i> 2. Technical Service / System Diagnostics Active';
-                } 
-                else if (currentStage === 3) {
+                    st2.innerHTML = '<i class="fa-solid fa-gears fa-spin"></i> 2. Technical Service / Diagnosis Is Active';
+                } else if (phase === 3) {
                     st1.className = "status-step status-done";
                     st2.className = "status-step status-done";
                     st3.className = "status-step status-done";
-                    st3.innerHTML = '<i class="fa-solid fa-box-open"></i> 3. Service Completed & Safely Handed Over / Returned!';
+                    st3.innerHTML = '<i class="fa-solid fa-box-open"></i> 3. Repaired successfully & Handed Over / Returned!';
                 }
             } else {
-                title.innerHTML = "❌ Order ID Not Found";
-                desc.innerHTML = "This mobile/tracking index is not logged. Connect with Vintech Engineering Support desk.";
-                st1.className = "status-step"; st2.className = "status-step"; st3.className = "status-step";
+                resBox.style.display = "block";
+                title.innerHTML = "🔍 Query Phase: Initial Registration";
+                desc.innerHTML = "This ID parameter is initialized. Live metrics updates pending processing from our desk.";
+                st1.className = "status-step status-current";
+                st2.className = "status-step";
+                st3.className = "status-step";
             }
         }
+
+        // ==========================================
+        // 🔒 SECRET ADMIN PANEL DASHBOARD ENGINE
+        // ==========================================
+        function openAdminPortal(e) {
+            e.preventDefault();
+            var password = prompt("Enter Secret Admin Authentication Code:");
+            
+            // SECURITY PASSWORD DETECTOR (Default code: vintech2026)
+            if (password === "vintech2026") {
+                document.getElementById("adminPanel").style.display = "block";
+                renderAdminTable();
+                window.location.hash = "adminPanel";
+            } else {
+                alert("Access Denied! Invalid Master Key Code Framework.");
+            }
+        }
+
+        function logoutAdmin() {
+            document.getElementById("adminPanel").style.display = "none";
+            alert("Admin Section Logged out safely.");
+            window.scrollTo(0,0);
+        }
+
+        function renderAdminTable() {
+            var tbody = document.getElementById("adminTableBody");
+            tbody.innerHTML = "";
+            var localDB = JSON.parse(localStorage.getItem("vintech_db"));
+
+            for (var key in localDB) {
+                if (localDB.hasOwnProperty(key)) {
+                    var row = document.createElement("tr");
+                    var stageText = "";
+                    if(localDB[key].stage == 1) stageText = "🟡 Phase 1: Received";
+                    if(localDB[key].stage == 2) stageText = "🔵 Phase 2: In Service";
+                    if(localDB[key].stage == 3) stageText = "🟢 Phase 3: Returned";
+
+                    row.innerHTML = `
+                        <td style="font-weight:bold; color:var(--accent);">${key}</td>
+                        <td>${localDB[key].name}</td>
+                        <td>${localDB[key].details}</td>
+                        <td>${stageText}</td>
+                        <td>
+                            <button class="action-btn btn-update" onclick="loadEditForm('${key}')">Edit</button>
+                            <button class="action-btn btn-delete" onclick="deleteCustomer('${key}')">Delete</button>
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                }
+            }
+        }
+
+        function saveCustomer() {
+            var phone = document.getElementById("admPhone").value.trim();
+            var name = document.getElementById("admName").value.trim();
+            var details = document.getElementById("admDetails").value.trim();
+            var stage = document.getElementById("admStage").value;
+
+            if (phone === "" || name === "" || details === "") {
+                alert("Please fill all configuration matrix fields!");
+                return;
+            }
+
+            var localDB = JSON.parse(localStorage.getItem("vintech_db"));
+            localDB[phone] = {
+                name: name,
+                details: details,
+                stage: parseInt(stage)
+            };
+
+            localStorage.setItem("vintech_db", JSON.stringify(localDB));
+            alert("Live Status Deployed Successfully, Bro!");
+            
+            // Reset input boxes safely
+            document.getElementById("admPhone").value = "";
+            document.getElementById("admName").value = "";
+            document.getElementById("admDetails").value = "";
+            
+            renderAdminTable();
+        }
+
+        function loadEditForm(key) {
+            var localDB = JSON.parse(localStorage.getItem("vintech_db"));
+            var target = localDB[key];
+            
+            document.getElementById("admPhone").value = key;
+            document.getElementById("admName").value = target.name;
+            document.getElementById("admDetails").value = target.details;
+            document.getElementById("admStage").value = target.stage;
+            
+            window.location.hash = "adminPanel";
+        }
+
+        function deleteCustomer(key) {
+            if (confirm("Are you sure you want to delete data logs for ID: " + key + "?")) {
+                var localDB = JSON.parse(localStorage.getItem("vintech_db"));
+                delete localDB[key];
+                localStorage.setItem("vintech_db", JSON.stringify(localDB));
+                renderAdminTable();
+            }
+        }
+
+        // Web3Forms Code Config Logic
+        const form = document.getElementById('vintechContactForm');
+        const statusBox = document.getElementById('formStatus');
+        const submitBtn = document.getElementById('submitBtn');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            submitBtn.innerText = "Processing Transmission...";
+            submitBtn.disabled = true;
+            const formData = new FormData(form);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: json
+            })
+            .then(async (response) => {
+                let res = await response.json();
+                if (response.status == 200) {
+                    statusBox.style.display = "block";
+                    statusBox.className = "id-status status-success";
+                    statusBox.innerHTML = "✓ Transmission Successful! Booking Logged.";
+                    form.reset();
+                } else {
+                    statusBox.style.display = "block";
+                    statusBox.className = "id-status status-error";
+                    statusBox.innerHTML = res.message;
+                }
+            })
+            .catch(error => {
+                statusBox.style.display = "block";
+                statusBox.className = "id-status status-error";
+                statusBox.innerHTML = "Server connectivity fault.";
+            })
+            .then(function() {
+                submitBtn.innerText = "Initialize High Priority Booking";
+                submitBtn.disabled = false;
+                setTimeout(() => { statusBox.style.display = "none"; }, 7000);
+            });
+        });
     </script>
 </body>
 </html>
