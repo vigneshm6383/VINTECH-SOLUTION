@@ -112,7 +112,7 @@
             font-size: 1.5rem;
             color: white;
             cursor: pointer;
-            z-index: 1001;
+            z-index: 1005; /* Keeps toggle button accessible safely above backdrop elements */
         }
 
         @media (max-width: 900px) {
@@ -121,16 +121,17 @@
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 70%;
-                max-width: 300px;
+                width: 75%;
+                max-width: 320px;
                 height: 100vh;
-                background-color: var(--dark);
+                background-color: var(--primary); /* Full solid backdrop block */
                 flex-direction: column;
-                padding: 80px 30px;
-                gap: 25px;
+                padding: 100px 40px;
+                gap: 30px;
                 transition: 0.4s cubic-bezier(0.1, 1, 0.1, 1);
-                box-shadow: -5px 0 25px rgba(0,0,0,0.3);
+                box-shadow: -10px 0 35px rgba(0,0,0,0.5);
                 align-items: flex-start;
+                z-index: 1004; /* Completely covers overlapping top headers/logos seamlessly */
             }
             .nav-links-menu.active { right: 0; }
         }
@@ -353,7 +354,7 @@
         </div>
     </section>
 
-    <!-- NEW SECTION: ACADEMIC COLLEGE PROJECTS MATRIX -->
+    <!-- Academic & College Project Matrix -->
     <section id="projects" class="section" style="background-color: #ffffff;">
         <h2 class="section-title">🎓 Academic & College Project Frameworks</h2>
         <p class="section-subtitle">Engineering, Arts, and Tech final-year source architectures designed and verified with absolute professional guidance.</p>
@@ -391,7 +392,7 @@
         </div>
     </section>
 
-    <!-- Namma Ready-Stock Inventory Matrix -->
+    <!-- Store Inventory Matrix -->
     <section id="inventory" class="section inventory-section" style="background-color: #f1f5f9;">
         <h2 class="section-title">Namma Ready-Stock Inventory Matrix</h2>
         <p class="section-subtitle">Click any parameter below to instantly auto-select it in namma dispatch desk order booking list.</p>
@@ -459,7 +460,8 @@
                 </div>
             </div>
             <div class="card">
-                <img class="card-img" src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=400&q=80" alt="Managed Logistics">
+                <!-- UPDATED IMAGE: Professional Data Center and Networks theme -->
+                <img class="card-img" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=400&q=80" alt="Managed IT Infrastructure Network Support">
                 <div class="card-content">
                     <i class="fa-solid fa-headset"></i>
                     <h3>Managed IT Logistics</h3>
@@ -469,7 +471,7 @@
         </div>
     </section>
 
-    <!-- Sell To Us Section -->
+    <!-- Sell To Us Section (Expanded to 4 items now!) -->
     <section id="scrap-deals" class="section" style="background-color: #f1f5f9;">
         <h2 class="section-title">💰 Sell E-Scrap / Old Electronics to Vintech</h2>
         <p class="section-subtitle">Unga kitta dead or broken Laptops, Phones, or old Parts iruka? Select any asset below to quote value instantly!</p>
@@ -491,6 +493,28 @@
                     <i class="fa-solid fa-mobile-button" style="color: var(--danger);"></i>
                     <h3>Old / Scrap Mobile Phones</h3>
                     <p>Dead Android devices, broken iPhones, older configurations, or outdated industrial terminal gadgets.</p>
+                    <div class="delivery-notice" style="background: #fee2e2; color: #991b1b;"><i class="fa-solid fa-hand-holding-dollar"></i> Tap to Send Scrap Details</div>
+                </div>
+            </div>
+            <!-- NEW ITEM 3: Motherboards & PC Components -->
+            <div class="card scrap-card" onclick="selectScrapItem('Dead Motherboards, RAM or GPU Parts Scrap')">
+                <span class="scrap-badge">Get Cash</span>
+                <img class="card-img" src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80" alt="Old PC Motherboard Circuits">
+                <div class="card-content">
+                    <i class="fa-solid fa-circuit-board" style="color: var(--danger);"></i>
+                    <h3>Dead Motherboards & PC Parts</h3>
+                    <p>Burnt computer motherboards, faulty RAM chips, non-working graphics cards, or server circuit boards.</p>
+                    <div class="delivery-notice" style="background: #fee2e2; color: #991b1b;"><i class="fa-solid fa-hand-holding-dollar"></i> Tap to Send Scrap Details</div>
+                </div>
+            </div>
+            <!-- NEW ITEM 4: Batteries & UPS Units -->
+            <div class="card scrap-card" onclick="selectScrapItem('Old Laptop Batteries or Faulty UPS Units Scrap')">
+                <span class="scrap-badge">Get Cash</span>
+                <img class="card-img" src="https://images.unsplash.com/photo-1620288627223-53302f4e8c74?auto=format&fit=crop&w=400&q=80" alt="Batteries Power Electronics">
+                <div class="card-content">
+                    <i class="fa-solid fa-battery-empty" style="color: var(--danger);"></i>
+                    <h3>Old Batteries & UPS Systems</h3>
+                    <p>Degraded laptop batteries, dead inverter units, swelling phone cells, or outdated backup systems.</p>
                     <div class="delivery-notice" style="background: #fee2e2; color: #991b1b;"><i class="fa-solid fa-hand-holding-dollar"></i> Tap to Send Scrap Details</div>
                 </div>
             </div>
@@ -588,7 +612,7 @@
     </footer>
 
     <script>
-        // Responsive Menu Toggle Functions
+        // Responsive Menu Toggle Functions with complete layer isolations
         function toggleMobileMenu() {
             document.getElementById("navMenu").classList.toggle("active");
         }
@@ -686,6 +710,7 @@
             }
         }
 
+        // Save Customer Logic 
         function saveCustomer() {
             var phone = document.getElementById("admPhone").value.trim();
             var name = document.getElementById("admName").value.trim();
