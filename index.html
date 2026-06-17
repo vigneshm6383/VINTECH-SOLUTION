@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VINTECH SOLUTION | Enterprise IT Systems & Doorstep Delivery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --primary: #0a192f;
+            --secondary: #00b4d8;
+            --accent: #2ec4b6;
+            --warning: #f59e0b;
+            --success: #10b981;
+            --dark: #112240;
+            --light: #f8fafc;
+            --text-dark: #0f172a;
+            --text-light: #94a3b8;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Top Contact Bar */
+        .top-bar {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 10px 5%;
+            font-size: 0.9rem;
+            border-bottom: 2px solid var(--secondary);
+        }
+        .top-bar a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        /* Navbar with Logo Icon */
+        nav {
+            background-color: var(--primary);
+            color: white;
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .logo {
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: 1px;
+        }
+        .logo i {
+            color: var(--secondary);
+            font-size: 1.9rem;
+            animation: pulse 2s infinite;
+        }
+        .logo span {
+            color: var(--secondary);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); color: var(--accent); }
+            100% { transform: scale(1); }
+        }
+
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            margin-left: 22px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(10, 25, 47, 0.9), rgba(17, 34, 64, 0.85)), url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            padding: 130px 5% 100px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        .hero h1 span {
+            color: var(--secondary);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 35px;
+            color: var(--text-light);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background-color: var(--secondary);
+            color: #0a192f;
+            padding: 14px 32px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 700;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: 2px solid var(--secondary);
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 180, 216, 0.3);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+
+        /* Live Tracker Section styling */
+        .tracker-section {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            color: white;
+            padding: 50px 5%;
+            text-align: center;
+            border-bottom: 4px solid var(--secondary);
+        }
+        .tracker-container {
+            max-width: 600px;
+            margin: 20px auto 0;
+            background: #1e293b;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: 1px solid #334155;
+        }
+        .tracker-input-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .tracker-input-box input {
+            flex: 1;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #475569;
+            background: #0f172a;
+            color: white;
+            font-size: 1rem;
+        }
+        .tracker-btn {
+            background: var(--secondary);
+            color: var(--primary);
+            border: none;
+            padding: 12px 25px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .tracker-btn:hover { background: #0096b4; }
+        .tracker-result {
+            display: none;
+            background: #0f172a;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: left;
+            border-left: 4px solid var(--warning);
+        }
+        .status-timeline {
+            margin-top: 15px;
+            font-size: 0.95rem;
+        }
+        .status-step {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .status-done { color: var(--success); }
+        .status-current { color: var(--warning); font-weight: bold; }
+
+        /* Stock Showcase Grid Layout */
+        .inventory-section {
+            background-color: #f1f5f9;
+        }
+        .stock-badge {
+            position: absolute;
+            top: 15px; right: 15px;
+            background: var(--success);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .delivery-notice {
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Services Cards Grid Layout */
+        .section { padding: 80px 5%; }
+        .section-title { text-align: center; margin-bottom: 10px; font-size: 2.4rem; color: var(--primary); font-weight: 700; }
+        .section-subtitle { text-align: center; color: #64748b; margin-bottom: 50px; font-size: 1.1rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .card { background: white; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: all 0.3s ease; border: 1px solid #e2e8f0; overflow: hidden; position: relative; }
+        .card-img { width: 100%; height: 180px; object-fit: cover; }
+        .card-content { padding: 25px; }
+        .card i { font-size: 2rem; color: var(--secondary); margin-bottom: 15px; }
+        .card h3 { margin-bottom: 12px; color: var(--primary); font-size: 1.3rem; }
+        .card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(10,25,47,0.12); }
+
+        /* Buy / Sell Trading Panels */
+        .trade-section { background-color: white; border-top: 1px solid #e2e8f0; }
+        .trade-container { display: flex; flex-wrap: wrap; gap: 30px; max-width: 1100px; margin: 0 auto; }
+        .trade-box { flex: 1; min-width: 320px; background: #f8fafc; padding: 40px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.02); border-top: 5px solid var(--secondary); }
+        .trade-box.accent-box { border-top-color: var(--accent); }
+        .trade-box h3 { font-size: 1.5rem; margin-bottom: 15px; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        .trade-box ul { margin: 20px 0; padding-left: 20px; }
+        .trade-box li { margin-bottom: 10px; color: #475569; }
+
+        /* Contact & Form integration */
+        .contact-container { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 50px; }
+        .info-side h3 { font-size: 1.8rem; color: var(--primary); margin-bottom: 25px; }
+        .info-card { background: #f8fafc; padding: 22px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid var(--primary); display: flex; align-items: center; gap: 15px; }
+        .info-card i { font-size: 1.5rem; color: var(--secondary); }
+        .info-card a { color: inherit; text-decoration: none; transition: 0.3s; }
+        .info-card a:hover { color: var(--secondary); }
+        .contact-form { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.06); border: 1px solid #e2e8f0; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--primary); }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 1rem; background-color: #f8fafc; }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: var(--secondary); background-color: white; }
+
+        footer { background-color: var(--primary); color: var(--text-light); text-align: center; padding: 30px 5%; font-size: 0.95rem; border-top: 4px solid var(--secondary); }
+        @media (max-width: 768px) { .hero h1 { font-size: 2.4rem; } nav { flex-direction: column; gap: 15px; } }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <i class="fa-solid fa-bolt"></i> Fast Tech Desk Call: <strong>+91 6383635311</strong> | Direct Mail: <a href="mailto:vintech.vin.1@gmail.com"><strong>vintech.vin.1@gmail.com</strong></a>
+    </div>
+
+    <nav>
+        <div class="logo">
+            <i class="fa-solid fa-microchip"></i> VINTECH <span>SOLUTION</span>
+        </div>
+        <div class="nav-links">
+            <a href="#tracker">Track Status</a>
+            <a href="#inventory">Store Inventory</a>
+            <a href="#services">Services</a>
+            <a href="#trade">Exchange</a>
+            <a href="#contact">Contact Support</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>Your Ultimate <span>IT Systems & Component Procurement</span> Hub</h1>
+        <p>Premium Web/APK Engineering, Chip-level System Diagnostics, and On-Demand Component sourcing delivered straight to your doorstep.</p>
+        <div class="cta-buttons">
+            <a href="https://wa.me/916383635311" target="_blank" class="btn"><i class="fa-brands fa-whatsapp"></i> WhatsApp Dispatch Desk</a>
+            <a href="#inventory" class="btn btn-outline">Browse Ready-Stock Inventory</a>
+        </div>
+    </header>
+
+    <section id="tracker" class="tracker-section">
+        <h2>Live System Service & Sourcing Tracker</h2>
+        <p style="color: var(--text-light);">Enter your tracking code or mobile number to track item diagnostics, procurement, and asset delivery windows.</p>
+        <div class="tracker-container">
+            <div class="tracker-input-box">
+                <input type="text" id="trackId" placeholder="Enter Tracker ID (e.g., VT-8942 / Mobile No)">
+                <button class="tracker-btn" onclick="checkTracking()">Track Live Status</button>
+            </div>
+            
+            <div id="trackerResult" class="tracker-result">
+                <h4 id="resTitle" style="color: white; margin-bottom: 5px;"></h4>
+                <p id="resDesc" style="color: var(--text-light); font-size: 0.9rem;"></p>
+                <div class="status-timeline">
+                    <div class="status-step status-done"><i class="fa-solid fa-circle-check"></i> Asset Device Logged / Order Approved</div>
+                    <div class="status-step" id="step2"><i class="fa-solid fa-circle-notch fa-spin"></i> Core Sourcing / Chip Diagnosis Ongoing</div>
+                    <div class="status-step" id="step3"><i class="fa-solid fa-truck"></i> Dispatched for 24-Hour Doorstep Handover</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="inventory" class="section inventory-section">
+        <h2 class="section-title">Namma Ready-Stock Inventory Matrix</h2>
+        <p class="section-subtitle">Select any upgrade parameter you need. We source and complete <strong>Doorstep Delivery within 24 Hours guaranteed!</strong></p>
+        <div class="grid">
+            <div class="card">
+                <span class="stock-badge">Ready Stock</span>
+                <img class="card-img" src="https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=400&q=80" alt="High-Speed SSD">
+                <div class="card-content">
+                    <i class="fa-solid fa-hard-drive"></i>
+                    <h3>Enterprise SSD Upgrades</h3>
+                    <p>NVMe M.2 & SATA high-frequency solid-state storage architecture for instantaneous laptop reboots.</p>
+                    <div class="delivery-notice"><i class="fa-solid fa-truck-ramp-box"></i> Doorstep Fitting within 24 Hours</div>
+                </div>
+            </div>
+            <div class="card">
+                <span class="stock-badge">Ready Stock</span>
+                <img class="card-img" src="https://images.unsplash.com/photo-1562976540-150ad11833ac?auto=format&fit=crop&w=400&q=80" alt="RAM Modules">
+                <div class="card-content">
+                    <i class="fa-solid fa-memory"></i>
+                    <h3>High-Frequency RAM Packs</h3>
+                    <p>DDR4 & DDR5 operational optimization memory modules tailored for structural debugging and high performance.</p>
+                    <div class="delivery-notice"><i class="fa-solid fa-truck-ramp-box"></i> Doorstep Fitting within 24 Hours</div>
+                </div>
+            </div>
+            <div class="card">
+                <span class="stock-badge">Ready Stock</span>
+                <img class="card-img" src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=400&q=80" alt="Keyboards & Peripherals">
+                <div class="card-content">
+                    <i class="fa-solid fa-keyboard"></i>
+                    <h3>OEM Keyboards & Spares</h3>
+                    <p>Premium replacement laptop key arrays, mechanical input mice panels, and original brand power supplies.</p>
+                    <div class="delivery-notice"><i class="fa-solid fa-truck-ramp-box"></i> Doorstep Fitting within 24 Hours</div>
+                </div>
+            </div>
+            <div class="card">
+                <span class="stock-badge" style="background:#0284c7;">Sourced in 1 Day</span>
+                <img class="card-img" src="https://images.unsplash.com/photo-1588508065123-287b28e013da?auto=format&fit=crop&w=400&q=80" alt="Motherboards">
+                <div class="card-content">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <h3>IC Logic & Motherboard Units</h3>
+                    <p>Original circuit fabrics and components sourced dynamically on-demand from our central hub units.</p>
+                    <div class="delivery-notice"><i class="fa-solid fa-truck-ramp-box"></i> Sourced & Delivered within 24 Hrs</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section">
+        <h2 class="section-title">Core Engineering Capabilities</h2>
+        <p class="section-subtitle">High-fidelity corporate IT configurations handled directly by tech engineers.</p>
+        <div class="grid">
+            <div class="card">
+                <img class="card-img" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=400&q=80" alt="Web Dev">
+                <div class="card-content">
+                    <i class="fa-solid fa-code"></i>
+                    <h3>Web Architecture</h3>
+                    <p>High-end responsive corporate portals optimized completely for business scaling and operations.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=400&q=80" alt="Mobile App">
+                <div class="card-content">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                    <h3>Mobile App (APK) Systems</h3>
+                    <p>Custom standalone Android and iOS applications structured on clean architecture and high speed.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&w=400&q=80" alt="Hardware Repair">
+                <div class="card-content">
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                    <h3>Hardware Diagnostics Desk</h3>
+                    <p>Chip-level industrial laptop troubleshooting, system upgrades, tuning configurations and clean setups.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=400&q=80" alt="IT Support">
+                <div class="card-content">
+                    <i class="fa-solid fa-headset"></i>
+                    <h3>Managed IT Logistics</h3>
+                    <p>On-demand remote operational logic debugging and custom deployment frameworks for business models.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="trade" class="section trade-section">
+        <h2 class="section-title">Hardware Liquidation & Trade Network</h2>
+        <p class="section-subtitle">Acquire genuine enterprise hardware spares or liquidate dead electronics stock instantly.</p>
+        <div class="trade-container">
+            <div class="trade-box">
+                <h3><i class="fa-solid fa-cart-flatbed-suitcases" style="color: var(--secondary);"></i> Procurement Desk</h3>
+                <p>We inventory original, factory-grade computer components at trade values:</p>
+                <ul>
+                    <li>High-Speed Solid State Drives (NVMe / SATA M.2)</li>
+                    <li>System Upgrades Memory Arrays (DDR4 / DDR5 RAM)</li>
+                    <li>Premium Keyboards, Desktop Mouse Devices & Dynamic Displays</li>
+                    <li>OEM Voltage Laptop Batteries & Power Blocks</li>
+                </ul>
+                <a href="#contact" class="btn" style="padding: 8px 20px; font-size: 0.9rem;">Order Parts</a>
+            </div>
+            <div class="trade-box accent-box">
+                <h3><i class="fa-solid fa-recycle" style="color: var(--accent);"></i> Electronics Salvage / Scrap</h3>
+                <p>Convert absolute tech junk, non-functional gear, and office liquidations into value:</p>
+                <ul>
+                    <li>Non-Booting, Smashed, or Broken Laptops & PC Frameworks</li>
+                    <li>Burnt Silicon Boards & Inoperable Processors</li>
+                    <li>Dead Component Modules & Structural Battery Chassis</li>
+                    <li>Bulk Corporate Infrastructure Clearances</li>
+                </ul>
+                <a href="#contact" class="btn" style="background-color: var(--accent); border-color: var(--accent); padding: 8px 20px; font-size: 0.9rem; color: #0a192f;">Get Scrap Evaluation</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <h2 class="section-title">Direct Connection Portal</h2>
+        <p class="section-subtitle">No artificial loops. File an official entry directly to our desk manager's device inbox.</p>
+        
+        <div class="contact-container">
+            <div class="info-side">
+                <h3>Vintech Support Matrix</h3>
+                <div class="info-card">
+                    <i class="fa-solid fa-phone-volume"></i>
+                    <p><strong>Voice Support Desk:</strong><br><a href="tel:6383635311">+91 6383635311</a></p>
+                </div>
+                <div class="info-card">
+                    <i class="fa-solid fa-envelope-open-text"></i>
+                    <p><strong>Corporate Mailbox:</strong><br><a href="mailto:vintech.vin.1@gmail.com">vintech.vin.1@gmail.com</a> (Tap to Mail Directly)</p>
+                </div>
+                <div class="info-card">
+                    <i class="fa-solid fa-truck-fast"></i>
+                    <p><strong>Logistics SLA Windows:</strong><br>24 Hours Express Components Procurement & Doorstep Fulfillment.</p>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <form action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="51f3cc87-524b-4e91-83d7-34e7b5900a5a">
+                    <input type="hidden" name="subject" value="New Sourcing / Service Booking Order via VINTECH Portal">
+                    <input type="hidden" name="from_name" value="VINTECH Web Engine">
+                    
+                    <div class="form-group">
+                        <label>Customer Full Name</label>
+                        <input type="text" name="Client Name" required placeholder="Enter client name">
+                    </div>
+                    <div class="form-group">
+                        <label>Active Mobile Link Number</label>
+                        <input type="tel" name="Client Mobile" required placeholder="Enter mobile number">
+                    </div>
+                    <div class="form-group">
+                        <label>Target Operational Matrix</label>
+                        <select name="Selected Service Pillar">
+                            <option>Custom Web Architecture & APK Systems</option>
+                            <option>24HR Express Parts Sourcing & Doorstep Fitting</option>
+                            <option>Hardware Diagnostics / OS Logic Deployment</option>
+                            <option>Scrap Equipment Asset Appraisals</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Logistics / Request Description</label>
+                        <textarea name="Project Description Logs" rows="4" placeholder="Mention item names or issues needed to source/fix within 1 day..."></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%; border: none; cursor: pointer;">Initialize High Priority Booking</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 VINTECH SOLUTION. All Rights Reserved. | Premium Corporate IT Engineering Portals</p>
+    </footer>
+
+    <script>
+        function checkTracking() {
+            var id = document.getElementById("trackId").value.trim();
+            var resBox = document.getElementById("trackerResult");
+            var title = document.getElementById("resTitle");
+            var desc = document.getElementById("resDesc");
+            var s2 = document.getElementById("step2");
+            var s3 = document.getElementById("step3");
+
+            if(id === "") {
+                alert("Please enter a valid Tracking ID or Mobile Number!");
+                return;
+            }
+
+            resBox.style.display = "block";
+            
+            // Checking logic simulation for customer interface
+            if(id.toLowerCase().includes("63836") || id.toLowerCase().includes("8942")) {
+                title.innerHTML = "📦 Status for Order ID: VT-8942 (In-Transit)";
+                desc.innerHTML = "Asset Parameter: Crucial High-Speed NVMe 500GB SSD Procurement.";
+                s2.className = "status-step status-done";
+                s2.innerHTML = '<i class="fa-solid fa-circle-check"></i> Sourcing Complete & System Verified';
+                s3.className = "status-step status-current";
+                s3.innerHTML = '<i class="fa-solid fa-truck fa-spin"></i> Out for 24-Hour Doorstep Delivery Handover';
+            } else {
+                title.innerHTML = "🛠️ Status for Ticket: VINTECH-NEW";
+                desc.innerHTML = "Allocation Matrix: Diagnostics Analysis Stage.";
+                s2.className = "status-step status-current";
+                s2.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Device Motherboard Chip Diagnosis Active';
+                s3.className = "status-step";
+                s3.innerHTML = '<i class="fa-solid fa-truck"></i> Dispatched for 24-Hour Doorstep Handover (Pending)';
+            }
+        }
+    </script>
+
+</body>
+</html>
