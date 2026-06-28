@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Search Console Verification Parameter -->
+    <meta name="google-site-verification" content="I9ln50Lbgi1YRXsG_yZrt5XQgsef_mesyvEwKJSk_CA" />
+    
     <title>VINTECH SOLUTION | Enterprise IT & Academic Engineering Hub</title>
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -112,7 +115,7 @@
             font-size: 1.5rem;
             color: white;
             cursor: pointer;
-            z-index: 1005; /* Keeps toggle button accessible safely above backdrop elements */
+            z-index: 1005;
         }
 
         @media (max-width: 900px) {
@@ -124,14 +127,14 @@
                 width: 75%;
                 max-width: 320px;
                 height: 100vh;
-                background-color: var(--primary); /* Full solid backdrop block */
+                background-color: var(--primary);
                 flex-direction: column;
                 padding: 100px 40px;
                 gap: 30px;
                 transition: 0.4s cubic-bezier(0.1, 1, 0.1, 1);
                 box-shadow: -10px 0 35px rgba(0,0,0,0.5);
                 align-items: flex-start;
-                z-index: 1004; /* Completely covers overlapping top headers/logos seamlessly */
+                z-index: 1004;
             }
             .nav-links-menu.active { right: 0; }
         }
@@ -460,7 +463,6 @@
                 </div>
             </div>
             <div class="card">
-                <!-- UPDATED IMAGE: Professional Data Center and Networks theme -->
                 <img class="card-img" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=400&q=80" alt="Managed IT Infrastructure Network Support">
                 <div class="card-content">
                     <i class="fa-solid fa-headset"></i>
@@ -471,7 +473,7 @@
         </div>
     </section>
 
-    <!-- Sell To Us Section (Expanded to 4 items now!) -->
+    <!-- Sell To Us Section -->
     <section id="scrap-deals" class="section" style="background-color: #f1f5f9;">
         <h2 class="section-title">💰 Sell E-Scrap / Old Electronics to Vintech</h2>
         <p class="section-subtitle">Unga kitta dead or broken Laptops, Phones, or old Parts iruka? Select any asset below to quote value instantly!</p>
@@ -496,7 +498,6 @@
                     <div class="delivery-notice" style="background: #fee2e2; color: #991b1b;"><i class="fa-solid fa-hand-holding-dollar"></i> Tap to Send Scrap Details</div>
                 </div>
             </div>
-            <!-- NEW ITEM 3: Motherboards & PC Components -->
             <div class="card scrap-card" onclick="selectScrapItem('Dead Motherboards, RAM or GPU Parts Scrap')">
                 <span class="scrap-badge">Get Cash</span>
                 <img class="card-img" src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80" alt="Old PC Motherboard Circuits">
@@ -507,7 +508,6 @@
                     <div class="delivery-notice" style="background: #fee2e2; color: #991b1b;"><i class="fa-solid fa-hand-holding-dollar"></i> Tap to Send Scrap Details</div>
                 </div>
             </div>
-            <!-- NEW ITEM 4: Batteries & UPS Units -->
             <div class="card scrap-card" onclick="selectScrapItem('Old Laptop Batteries or Faulty UPS Units Scrap')">
                 <span class="scrap-badge">Get Cash</span>
                 <img class="card-img" src="https://images.unsplash.com/photo-1620288627223-53302f4e8c74?auto=format&fit=crop&w=400&q=80" alt="Batteries Power Electronics">
@@ -612,7 +612,7 @@
     </footer>
 
     <script>
-        // Responsive Menu Toggle Functions with complete layer isolations
+        // Responsive Menu Toggle Functions
         function toggleMobileMenu() {
             document.getElementById("navMenu").classList.toggle("active");
         }
@@ -628,7 +628,7 @@
             localStorage.setItem("vintech_db", JSON.stringify(defaultDatabase));
         }
 
-        // 🔍 Track Customer Function
+        // Track Customer Function
         function checkTracking() {
             var id = document.getElementById("trackId").value.trim();
             var resBox = document.getElementById("trackerResult");
@@ -660,7 +660,7 @@
             }
         }
 
-        // 🛒 Click Auto-Select Engines
+        // Click Auto-Select Engines
         function selectStockItem(itemName) {
             document.getElementById('formServicePillar').value = "24HR Express Parts Sourcing & Doorstep Fitting";
             document.getElementById('formDescription').value = "Hi Vintech! I want to order/source: " + itemName + ". Please verify ready-stock options.";
@@ -682,7 +682,7 @@
             document.getElementById('formClientName').focus();
         }
 
-        // 🔒 Admin Desk Engines
+        // Admin Desk Engines
         function openAdminPortal(e) {
             e.preventDefault();
             var password = prompt("Enter Secret Admin Authentication Code:");
@@ -710,7 +710,6 @@
             }
         }
 
-        // Save Customer Logic 
         function saveCustomer() {
             var phone = document.getElementById("admPhone").value.trim();
             var name = document.getElementById("admName").value.trim();
